@@ -1,0 +1,96 @@
+# Bind Mount:
+
+1. Crea un directorio en tu host y dentro crea un fichero index.html.
+
+   ```bash
+   # Crear un directorio en el host
+   mkdir directorio_bindMount
+   
+   # Moverse al directorio recién creado
+   cd directorio_bindMount
+   
+   # Crear un archivo index.html
+   echo "<html><body><h1>Hola desde index.html</h1></body></html>" > index.html
+   ```
+
+   
+
+2. Crea un contenedor desde la imagen `php:7.4-apache` donde montes en el
+   directorio `/var/www/html` el directorio que has creado por medio de bind mount .
+
+   ```bash
+   $ sudo docker run -d -p 8081:80 -v /home/olai/Escritorio/Docker/directorio_bindMount:/var/www/html --name contenedor_bind_mount php:7.4-apache
+   ```
+
+   
+
+3. Accede al contenedor desde el navegador para ver la información ofrecida por el
+   fichero `index.html`.
+
+   ![image-20240201170828226](./DockerBindMount.assets/image-20240201170828226.png)
+
+   
+
+4. Modifica el contenido del fichero `index.html` en tu host y comprueba que al
+   refrescar la página ofrecida por el contenedor, el contenido ha cambiado.
+
+   ```bash
+   $ nano /home/olai/Escritorio/Docker/directorio_bindMount/index.html 
+   
+   #HTML de ejemplo:
+   <!DOCTYPE html>
+       <html lang="es">
+       <head>
+       	<meta charset="UTF-8">
+       	<meta name="viewport" content="width=device-width, initialscale=
+       1.0">
+   		<title>Página de Ejemplo Bind Mount</title>
+   	</head>
+   	<body>
+   	<header>
+   		<h1>Bienvenido a mi página de ejemplo</h1>
+   	</header>
+   	<main>
+   		<p>Este es un contenido de ejemplo en tu página.</p>
+   	</main>
+   	<footer>
+   		<p>&copy; 2024 Mi Página de Ejemplo</p>
+   	</footer>
+   	</body>
+   </html>
+   # CTRL+O && CTRL+X
+   ```
+
+   ![image-20240201171652644](./DockerBindMount.assets/image-20240201171652644.png)
+
+   
+
+5. Borra el contenedor
+
+   ```bash
+   #Parar el contenedor
+   sudo docker stop contenedor_bind_mount
+   
+   #Borrar el contenedor
+   sudo docker rm contenedor_bind_mount
+   ```
+
+   
+
+6. Crea un nuevo contenedor y monta el mismo directorio como en el ejercicio anterior.
+
+   ```bash
+   $ sudo docker run -d -p 8081:80 -v /home/olai/Escritorio/Docker/directorio_bindMount:/var/www/html --name contenedor_bind_mount php:7.4-apache
+   ```
+
+   
+
+7. Accede al contenedor desde el navegador para ver la información ofrecida por el
+   fichero `index.html` . ¿Se sigue viendo el mismo contenido?
+
+   ```bash
+   Sí, porque cuando se borra un contenedor, solo se elimina la instancia del contenedor, no el directorio en el host que en el que se estaba montando el contenedor. Los datos en el directorio del host permanecerán intactos incluso después de eliminar el
+   ```
+
+   ![image-20240201172054597](./DockerBindMount.assets/image-20240201172054597.png)
+
