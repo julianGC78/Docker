@@ -67,16 +67,20 @@
 
 5. Borra el contenedor
 
-   ```
+   ```bash
+   #Parar el contenedor
+   sudo docker stop contenedor_bind_mount
    
+   #Borrar el contenedor
+   sudo docker rm contenedor_bind_mount
    ```
 
    
 
 6. Crea un nuevo contenedor y monta el mismo directorio como en el ejercicio anterior.
 
-   ```
-   
+   ```bash
+   $ sudo docker run -d -p 8081:80 -v /home/olai/Escritorio/Docker/directorio_bindMount:/var/www/html --name contenedor_bind_mount php:7.4-apache
    ```
 
    
@@ -84,8 +88,9 @@
 7. Accede al contenedor desde el navegador para ver la información ofrecida por el
    fichero `index.html` . ¿Se sigue viendo el mismo contenido?
 
-   ```
-   
+   ```bash
+   Sí, porque cuando se borra un contenedor, solo se elimina la instancia del contenedor, no el directorio en el host que en el que se estaba montando el contenedor. Los datos en el directorio del host permanecerán intactos incluso después de eliminar el
    ```
 
-   
+   ![image-20240201172054597](./DockerBindMount.assets/image-20240201172054597.png)
+
