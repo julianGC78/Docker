@@ -45,14 +45,26 @@ $ sudo docker run -d -p 8080:80 --name miweb-container -v miweb:/var/www/html ph
 
 5. Borra el contenedor
 
-   
+   ```bash
+   $ sudo docker rm -f miweb-container
+   ```
+
+   ![image-20240201172409732](./Docker-persistencia.assets/image-20240201172409732.png)
 
 6. Crea un nuevo contenedor y monta el mismo volumen como en el ejercicio anterior.
 
-   
+   ```bash
+   $ sudo docker run -d -p 8080:80 --name miweb-container2 -v miweb:/var/www/html php:7.4-apache
+   ```
+
+   ![image-20240201172829457](./Docker-persistencia.assets/image-20240201172829457.png)
 
 7. Accede al contenedor desde el navegador para ver la información ofrecida por el fichero
    index.html . ¿Seguía existiendo ese fichero?
+
+   Si, sigue extiendo el fichero y podemos hadceder a el.
+
+   ![image-20240201172941073](./Docker-persistencia.assets/image-20240201172941073.png)
 
 ### Bind mount
 
