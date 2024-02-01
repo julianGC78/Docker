@@ -2,9 +2,9 @@
 
 > Trabajo realizado por Julián Grijuela Cueva y Olay......
 
-![image-20240201065312052](./Docker-persistencia.assets/image-20240201065312052.png)
 
 
+![image-20240201065132506](./Docker-persistencia.assets/image-20240201065132506.png)
 
 ### Volúmnes docker
 
@@ -14,7 +14,7 @@
 $ sudo docker volume create miweb
 ```
 
-![image-20240201070041485](/home/linux/snap/typora/86/.config/Typora/typora-user-images/image-20240201070041485.png)
+![image-20240201070041485](./Docker-persistencia.assets/image-20240201070041485.png)
 
 2. Crea un contenedor desde la imagen php:7.4-apache donde montes en el directorio
    /var/www/html (que sabemos que es el DocumentRoot del servidor que nos ofrece esa
@@ -25,7 +25,7 @@ $ sudo docker run -d -p 8080:80 --name miweb-container -v miweb:/var/www/html ph
 
 ```
 
-![image-20240201070749714](/home/linux/snap/typora/86/.config/Typora/typora-user-images/image-20240201070749714.png)
+![image-20240201070749714](./Docker-persistencia.assets/image-20240201070749714.png)
 
 3. Utiliza el comando docker cp para copiar un fichero index.html en el directorio
    /var/www/html .
@@ -36,12 +36,12 @@ $ sudo docker run -d -p 8080:80 --name miweb-container -v miweb:/var/www/html ph
    $ sudo docker cp index.html miweb-container:/var/www/html
    ```
 
-![image-20240201072845764](/home/linux/snap/typora/86/.config/Typora/typora-user-images/image-20240201072845764.png)
+![image-20240201072845764](./Docker-persistencia.assets/image-20240201072845764.png)
 
 4. Accede al contenedor desde el navegador para ver la información ofrecida por el fichero
    index.html .
 
-![image-20240201074353760](/home/linux/snap/typora/86/.config/Typora/typora-user-images/image-20240201074353760.png)
+![image-20240201074353760](./Docker-persistencia.assets/image-20240201074353760.png)
 
 5. Borra el contenedor
 
